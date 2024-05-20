@@ -18,6 +18,7 @@ type Word struct {
 	Datouno     string `json:"datouno"`
 	Datodos     string `json:"datodos"`
 	Description string `json:"description"`
+	AudioLink   string `json:"audio_link"`
 }
 
 func initDB() {
@@ -35,7 +36,8 @@ func initDB() {
 }
 
 func getWordsByLetter(letter string) ([]Word, error) {
-	rows, err := db.Query("SELECT datouno, datodos, descripcion FROM tb_palabras WHERE datouno LIKE ?", letter+"%")
+	query := "SELECT datouno, datodos, descripcion, audio_link FROM tb_palabras WHERE datouno LIKE ?"
+	rows, err := db.Query(query, letter+"%")
 	if err != nil {
 		return nil, err
 	}
@@ -44,7 +46,7 @@ func getWordsByLetter(letter string) ([]Word, error) {
 	var words []Word
 	for rows.Next() {
 		var word Word
-		if err := rows.Scan(&word.Datouno, &word.Datodos, &word.Description); err != nil {
+		if err := rows.Scan(&word.Datouno, &word.Datodos, &word.Description, &word.AudioLink); err != nil {
 			return nil, err
 		}
 		words = append(words, word)
@@ -111,7 +113,7 @@ func traducirHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	palabra := struct {
+	data := struct {
 		DatoUno    string
 		Traduccion string
 	}{
@@ -125,7 +127,7 @@ func traducirHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = tmpl.Execute(w, palabra)
+	err = tmpl.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Error ejecutando la plantilla", http.StatusInternalServerError)
 		return
