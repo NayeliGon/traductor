@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="/static/assets/css/estilos.css">
     <!-- Custom Dark Mode CSS -->
     <link rel="stylesheet" href="/static/assets/css/dark-mode.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/static/assets/css/style.css" rel="stylesheet">
@@ -169,15 +171,18 @@
                     .then(data => {
                         const wordsContainer = document.getElementById('words');
                         wordsContainer.innerHTML = ''; // Limpiar contenido previo
-                        data.forEach(word => {
+                        data.forEach((word, index) => {
                             const wordElement = document.createElement('div');
                             const audioLink = convertDriveLink(word.audio_link);
                             wordElement.innerHTML = `
-                                <div>
-                                    <h5>${word.datouno}</h5>
-                                    <h6>${word.datodos}</h6>
+                                <div id="word-${index}">
+                                    <h5>${word.datodos}</h5>
+                                    <h6 id="datodos-${index}">${word.datouno}</h6>
                                     <p>${word.description}</p>
                                     <iframe src="${audioLink}" width="300" height="60"></iframe>
+                                    <button onclick="speech('${index}')" style="background: none; border: none; cursor: pointer;">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
                                 </div>
                             `;
                             wordsContainer.appendChild(wordElement);
@@ -185,13 +190,36 @@
                     })
                     .catch(error => console.error('Error:', error));
             }
-    
+        
             function convertDriveLink(driveLink) {
                 // Convierte el enlace de Google Drive a un enlace directo
                 const fileId = driveLink.match(/[-\w]{25,}/);
                 return fileId ? `https://drive.google.com/file/d/${fileId[0]}/preview` : driveLink;
             }
+        
+            function speech(index) {
+                const text = document.getElementById(`datodos-${index}`).textContent;
+                if (text !== "") {
+                    voz.text = text;
+                    window.speechSynthesis.speak(voz);
+                }
+            }
+        
+            var voz = new SpeechSynthesisUtterance();
+            voz.lang = "es-ES";
+            voz.volume = 1;
+            var timer = setInterval(function () {
+                var voices = speechSynthesis.getVoices();
+                if (voices.length !== 0) {
+                    voz.voice = voices[0];
+                    voz.voiceURI = voices[0].voiceURI;
+                    clearInterval(timer);
+                }
+                console.log(voices);
+            }, 1000);
         </script>
+           
+        
 
         <!-- Añadir más botones según sea necesario -->
         <div id="words">
