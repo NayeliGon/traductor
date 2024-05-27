@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <title>Traductor - Lengua Maya</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -17,7 +20,6 @@
     <link rel="stylesheet" href="/static/assets/css/estilos.css">
     <!-- Custom Dark Mode CSS -->
     <link rel="stylesheet" href="/static/assets/css/dark-mode.css">
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="static/assets/css/style.css" rel="stylesheet">
 
@@ -27,7 +29,6 @@
             background-color: #333;
             color: #fff;
         }
-
         /* Modo claro */
         .light-mode {
             background-color: #fff;
@@ -35,9 +36,7 @@
         }
     </style>
 </head>
-
-
-<body>
+<body class="light-mode">
     <!-- Topbar Start -->
     <div class="container-fluid bg-light pt-3 d-none d-lg-block">
         <div class="container">
@@ -47,27 +46,15 @@
                         <p><i class="fa fa-envelope mr-2"></i>code@gmail.com</p>
                         <p class="text-body px-3">|</p>
                         <p><i class="fa fa-phone-alt mr-2"></i>+502 1234-5678</p>
-
-
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-primary px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-primary pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+                        <a class="text-primary px-3" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="text-primary px-3" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="text-primary px-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="text-primary px-3" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="text-primary pl-3" href=""><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
@@ -90,9 +77,7 @@
                         <a href="index.html" class="nav-item nav-link active">Inicio</a>
                         <a href="about.html" class="nav-item nav-link">Acerca de</a>
                         <a href="./diccionario.html" class="nav-item nav-link">Diccionario</a>
-
                     </div>
-                    <!-- Agregar el botón aquí -->
                     <button id="toggle-mode-btn" class="btn btn-sm btn-outline-dark ml-lg-3">Cambiar Modo</button>
                 </div>
             </nav>
@@ -105,7 +90,7 @@
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="/static/assets/img/guate1.jpg" alt="Image">
+                    <img class="w-100" src="/static/assets/img/guate1.jpg" alt="Imagen 1">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Traductor y Diccionario</h4>
@@ -115,7 +100,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="/static/assets/img/guate2.jpg" alt="Image">
+                    <img class="w-100" src="/static/assets/img/guate2.jpg" alt="Imagen 2">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Traductor y Diccionario</h4>
@@ -139,146 +124,119 @@
     </div>
     <!-- Carousel End -->
 
-    <!-- Booking Start -->
-    <div class="container-fluid booking mt-5 pb-5">
-        <div class="container pb-5">
-            <div class="bg-light shadow" style="padding: 30px;">
-                <div class="row align-items-center" style="min-height: 60px;">
-                </div>
-            </div>
+ <!-- Booking Start -->
+<div class="container-fluid booking mt-5 pb-5">
+    <div class="container pb-5">
+        <div class="bg-light shadow" style="padding: 30px;">
+            <div class="row align-items-center" style="min-height: 60px;"></div>
         </div>
     </div>
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100" src="/static/assets/img/lengua1.png" style="object-fit: cover;" alt="Imagen sobre nosotros">
-                    </div>
-                </div>
-                <div class="col-lg-6 pt-5 pb-lg-5">
-                    <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
-                        <h2 class="mb-4">Traductor</h2>
-                        <form action="/traducir" method="post" id="translatorForm">
-                            <div class="form-group">
-                                <label for="opciones">Selecciona una opción de traducción:</label>
-                                <select class="form-control" id="opciones" name="opciones">
-                                    <option value="esp-qeqchi">Español a Qeqchi</option>
-                                    <option value="qeqchi-esp">Qeqchi a Español</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="textoInput">Palabra original:</label>
-                                <input type="text" class="form-control" id="textoInput" name="textoInput" placeholder="Introduce texto aquí">
-                            </div>
-                            <!-- Mostrar la traducción directamente en la misma página -->
-                            <div class="form-group">
-                                <label for="textoOutput">Palabra traducida:</label>
-                                <p>{{ .Traduccion }}</p>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Traducir</button>
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Registration Start -->
-    
-        
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
-        <div class="row pt-5">
-            <div class="col-lg-3 col-md-6 mb-5">
-                <a href="" class="navbar-brand">
-                    <h1 class="text-primary"><span class="text-white">Aj jalol </span>aatin</h1>
-                </a>
-                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Siguenos</h6>
-                <div class="d-flex justify-content-start">
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+</div>
+<div class="container-fluid py-5">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
-                <p class="m-0 text-white-50">Copyright &copy; <a href="#">Code</a>. Todos los derechos Reservados</a>
-                </p>
+            <div class="col-lg-6">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100" src="/static/assets/img/lengua1.png" style="object-fit: cover;" alt="Imagen sobre nosotros">
+                </div>
             </div>
-            <div class="col-lg-6 text-center text-md-right">
+            <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+                    <h2 class="mb-4">Traductor</h2>
+                    <form action="/traducir" method="post" id="translatorForm">
+                        <div class="form-group">
+                            <label for="opciones">Selecciona una opción de traducción:</label>
+                            <select class="form-control" id="opciones" name="opciones">
+                                <option value="esp-qeqchi">Español a Qeqchi</option>
+                                <option value="qeqchi-esp">Qeqchi a Español</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="textoInput">Palabra original:</label>
+                            <input type="text" class="form-control" id="textoInput" name="textoInput" placeholder="Introduce texto aquí">
+                        </div>
+                        <!-- Mostrar la traducción directamente en la misma página -->
+                        <div class="form-group">
+                            <label for="textoOutput">Palabra traducida:</label>
+                            <p id="palabra-traducida">{{ .Traduccion }}</p>
+                            <button type="button" onclick="speakTranslation()" style="background: none; border: none; cursor: pointer;">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Traducir</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Footer End -->
+</div>
+<!-- Booking End -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-white d-flex justify-content-center">
+                <h5 class="modal-title d-flex align-items-center" id="errorModalLabel">
+                    <i class="fas fa-exclamation-triangle fa-3x text-danger"></i>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                Error en la traducción. Inténtalo de nuevo.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script>
-        // Obtener el botón y el body
-        const toggleModeBtn = document.getElementById('toggle-mode-btn');
-        const body = document.body;
-
-        // Función para cambiar entre modos
-        function toggleMode() {
-            // Si el body tiene la clase dark-mode, cambia a light-mode y viceversa
-            body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
-        }
-
-        // Agregar evento click al botón
-        toggleModeBtn.addEventListener('click', toggleMode);
-    </script>
-    <script src="js/main.js"></script>
+  
 
 
+
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        // Función para traducir la palabra
-        function traducirTexto() {
-            // Obtener el valor del campo de entrada
-            var palabraOriginal = document.getElementById("textoInput").value;
-    
-            // Realizar una solicitud POST al servidor para traducir la palabra
-            fetch("/traducir", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: "textoInput=" + encodeURIComponent(palabraOriginal)
-            })
-            .then(response => response.text())
-            .then(traduccion => {
-                // Actualizar el valor del campo de texto de salida con la traducción
-                document.getElementById("textoOutput").value = traduccion;
-            })
-            .catch(error => {
-                console.error("Error en la traducción:", error);
-                alert("Error en la traducción. Inténtalo de nuevo más tarde.");
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleModeBtn = document.getElementById("toggle-mode-btn");
+            const body = document.body;
+
+            toggleModeBtn.addEventListener("click", function () {
+                body.classList.toggle("dark-mode");
+                body.classList.toggle("light-mode");
+                const isDarkMode = body.classList.contains("dark-mode");
+                toggleModeBtn.textContent = isDarkMode ? "Modo Claro" : "Modo Oscuro";
             });
+        });
+
+        $(document).ready(function() {
+            $('#translatorForm').on('submit', function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    url: '/traducir',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        $('#palabra-traducida').text(response.traduccion);
+                    },
+                    error: function() {
+                        $('#errorModal').modal('show');
+                    }
+                });
+            });
+        });
+
+        function speakTranslation() {
+            var texto = document.getElementById("palabra-traducida").innerText;
+            var utterance = new SpeechSynthesisUtterance(texto);
+            speechSynthesis.speak(utterance);
         }
     </script>
 </body>
-
-
-
-
 </html>

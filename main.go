@@ -15,10 +15,10 @@ var db *sql.DB
 var err error
 
 type Word struct {
-	Datouno     string `json:"datouno"`
-	Datodos     string `json:"datodos"`
-	Description string `json:"description"`
-	AudioLink   string `json:"audio_link"`
+	Datouno       string `json:"datouno"`
+	Datodos       string `json:"datodos"`
+	Description   string `json:"description"`
+	Pronunciacion string `json:"pronunciacion"`
 }
 
 func initDB() {
@@ -36,7 +36,7 @@ func initDB() {
 }
 
 func getWordsByLetter(letter string) ([]Word, error) {
-	query := "SELECT datouno, datodos, descripcion, audio_link FROM tb_palabras WHERE datouno LIKE ?"
+	query := "SELECT datouno, datodos, descripcion, pronunciacion FROM tb_palabras WHERE datouno LIKE ?"
 	rows, err := db.Query(query, letter+"%")
 	if err != nil {
 		return nil, err
@@ -46,7 +46,7 @@ func getWordsByLetter(letter string) ([]Word, error) {
 	var words []Word
 	for rows.Next() {
 		var word Word
-		if err := rows.Scan(&word.Datouno, &word.Datodos, &word.Description, &word.AudioLink); err != nil {
+		if err := rows.Scan(&word.Datouno, &word.Datodos, &word.Description, &word.Pronunciacion); err != nil {
 			return nil, err
 		}
 		words = append(words, word)

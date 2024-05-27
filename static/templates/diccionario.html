@@ -6,7 +6,12 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
-
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/static/assets/css/estilos.css">
+    <link rel="stylesheet" href="/static/assets/css/dark-mode.css">
+    <link href="static/assets/css/style.css" rel="stylesheet">
     <!-- Favicon -->
     <link href="/static/assets/img/favicon.ico" rel="icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -17,6 +22,9 @@
     <!-- Custom Dark Mode CSS -->
     <link rel="stylesheet" href="/static/assets/css/dark-mode.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
 </head>
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -34,7 +42,23 @@
             background-color: #fff;
             color: #333;
         }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+        #letters {
+            justify-content: center;
+        }
+        .btn {
+            min-width: 50px;
+        }
+        .card-body {
+            text-align: left;
+        }
     </style>
+    
 </head>
 <body>
     <!-- Topbar Start -->
@@ -133,11 +157,9 @@
             </a>
         </div>
     </div>
-    <!-- Carousel End -->
-
     <div class="container mt-4">
         <h1>Diccionario</h1>
-        <div id="letters" class="mb-4">
+        <div id="letters" class="mb-4 d-flex flex-wrap justify-content-center">
             <button class="btn btn-primary mr-2 mb-2" onclick="fetchWords('A')">A</button>
             <button class="btn btn-primary mr-2 mb-2" onclick="fetchWords('B')">B</button>
             <button class="btn btn-primary mr-2 mb-2" onclick="fetchWords('C')">C</button>
@@ -164,68 +186,62 @@
             <button class="btn btn-primary mr-2 mb-2" onclick="fetchWords('Y')">Y</button>
             <button class="btn btn-primary mr-2 mb-2" onclick="fetchWords('Z')">Z</button>
         </div>
-        <script>
-            function fetchWords(letter) {
-                fetch(`/words?letter=${letter}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const wordsContainer = document.getElementById('words');
-                        wordsContainer.innerHTML = ''; // Limpiar contenido previo
-                        data.forEach((word, index) => {
-                            const wordElement = document.createElement('div');
-                            const audioLink = convertDriveLink(word.audio_link);
-                            wordElement.innerHTML = `
-                                <div id="word-${index}">
-                                    <h5>${word.datodos}</h5>
-                                    <h6 id="datodos-${index}">${word.datouno}</h6>
-                                    <p>${word.description}</p>
-                                    <iframe src="${audioLink}" width="300" height="60"></iframe>
-                                    <button onclick="speech('${index}')" style="background: none; border: none; cursor: pointer;">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                                </div>
-                            `;
-                            wordsContainer.appendChild(wordElement);
-                        });
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
         
-            function convertDriveLink(driveLink) {
-                // Convierte el enlace de Google Drive a un enlace directo
-                const fileId = driveLink.match(/[-\w]{25,}/);
-                return fileId ? `https://drive.google.com/file/d/${fileId[0]}/preview` : driveLink;
-            }
-        
-            function speech(index) {
-                const text = document.getElementById(`datodos-${index}`).textContent;
-                if (text !== "") {
-                    voz.text = text;
-                    window.speechSynthesis.speak(voz);
-                }
-            }
-        
-            var voz = new SpeechSynthesisUtterance();
-            voz.lang = "es-ES";
-            voz.volume = 1;
-            var timer = setInterval(function () {
-                var voices = speechSynthesis.getVoices();
-                if (voices.length !== 0) {
-                    voz.voice = voices[0];
-                    voz.voiceURI = voices[0].voiceURI;
-                    clearInterval(timer);
-                }
-                console.log(voices);
-            }, 1000);
-        </script>
-           
-        
-
-        <!-- Añadir más botones según sea necesario -->
         <div id="words">
             <h2>Palabras</h2>
+            <!-- Aquí se insertarán las palabras -->
         </div>
     </div>
+
+    <script>
+        function fetchWords(letter) {
+            fetch(`/words?letter=${letter}`)
+                .then(response => response.json())
+                .then(data => {
+                    const wordsContainer = document.getElementById('words');
+                    wordsContainer.innerHTML = ''; // Limpiar contenido previo
+                    data.forEach((word, index) => {
+                        const wordElement = document.createElement('div');
+                        wordElement.classList.add('card', 'mb-3');
+                        wordElement.innerHTML = `
+                            <div class="card-body">
+                                
+                                <h6 class="card-subtitle mb-2 text-muted">${word.datouno}</h6>
+                                <h5 class="card-title">${word.datodos}</h5>
+                                <p class="card-text">${word.description}</p>
+                                <p id="pronunciacion-${index}" style="display:none;">${word.pronunciacion}</p>
+                                <button onclick="speech('${index}')" style="background: none; border: none; cursor: pointer;">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                            </div>
+                        `;
+                        wordsContainer.appendChild(wordElement);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function speech(index) {
+            const text = document.getElementById(`pronunciacion-${index}`).textContent;
+            if (text !== "") {
+                voz.text = text;
+                window.speechSynthesis.speak(voz);
+            }
+        }
+
+        var voz = new SpeechSynthesisUtterance();
+        voz.lang = "es-ES";
+        voz.volume = 1;
+        var timer = setInterval(function () {
+            var voices = speechSynthesis.getVoices();
+            if (voices.length !== 0) {
+                voz.voice = voices[0];
+                voz.voiceURI = voices[0].voiceURI;
+                clearInterval(timer);
+            }
+            console.log(voices);
+        }, 1000);
+    </script>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
